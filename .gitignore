@@ -1,0 +1,9 @@
+# Ignoring Eclipse IDE files
+.project
+.classpath
+.settings/
+.metadata/
+
+# Ignoring Intellij Idea files
+*.iml
+.idea/
