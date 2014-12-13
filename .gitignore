@@ -3,6 +3,7 @@
 .classpath
 .settings/
 .metadata/
+RemoteSystemsTempFiles/
 
 # Ignoring Intellij Idea files
 *.iml
