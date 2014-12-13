@@ -1,0 +1,110 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.carbon.ecommerce" />
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="org.h2.Driver"/>
+	    <property name="url" value="jdbc:h2:~/test"/>
+	    <property name="username" value="sa"/>
+	    <property name="password" value=""/>
+	</bean>
+	
+	
+	<bean id="itemBouchon1" class="com.carbon.ecommerce.domain.Item">
+	    <property name="id" value="1"/>
+	    <property name="composition" value="100% Coton"/>
+	    <property name="description" value="Maillot Bordeaux"/>
+	    <property name="reference" value="10001"/>
+	    <property name="price" value="80"/>
+	</bean>
+	
+	<bean id="stock11" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="1"/>
+	    <property name="stock" value="5"/>
+	    <property name="size" value="S"/>
+	</bean>
+	<bean id="stock12" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="2"/>
+	    <property name="stock" value="15"/>
+	    <property name="size" value="L"/>
+	</bean>
+	<bean id="stock13" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="3"/>
+	    <property name="stock" value="25"/>
+	    <property name="size" value="M"/>
+	</bean>
+	<bean id="itemBouchon2" class="com.carbon.ecommerce.domain.Item">
+	    <property name="id" value="2"/>
+	    <property name="composition" value="100% Coton"/>
+	    <property name="description" value="Short Bordeaux"/>
+	    <property name="reference" value="10002"/>
+	    <property name="price" value="50"/>
+	</bean>
+	<bean id="stock21" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="4"/>
+	    <property name="stock" value="15"/>
+	    <property name="size" value="S"/>
+	</bean>
+	<bean id="stock22" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="5"/>
+	    <property name="stock" value="5"/>
+	    <property name="size" value="L"/>
+	</bean>
+	<bean id="stock23" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="6"/>
+	    <property name="stock" value="2"/>
+	    <property name="size" value="M"/>
+	</bean>
+	
+	<bean id="itemBouchon3" class="com.carbon.ecommerce.domain.Item">
+	    <property name="id" value="3"/>
+	    <property name="composition" value="100% Coton"/>
+	    <property name="description" value="Chaussettes Bordeaux"/>
+	    <property name="reference" value="10003"/>
+	    <property name="price" value="20"/>
+	</bean>
+	
+	<bean id="stock31" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="7"/>
+	    <property name="stock" value="55"/>
+	    <property name="size" value="S"/>
+	</bean>
+	<bean id="stock32" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="8"/>
+	    <property name="stock" value="185"/>
+	    <property name="size" value="L"/>
+	</bean>
+	<bean id="stock33" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="9"/>
+	    <property name="stock" value="99"/>
+	    <property name="size" value="M"/>
+	</bean>
+	<bean id="itemBouchon4" class="com.carbon.ecommerce.domain.Item">
+	    <property name="id" value="4"/>
+	    <property name="composition" value="100% Coton"/>
+	    <property name="description" value="Crampons Bordeaux"/>
+	    <property name="reference" value="10004"/>
+	    <property name="price" value="120"/>
+	</bean>
+	
+	<bean id="stock41" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="10"/>
+	    <property name="stock" value="25"/>
+	    <property name="size" value="XS"/>
+	</bean>
+	<bean id="stock42" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="11"/>
+	    <property name="stock" value="15"/>
+	    <property name="size" value="L"/>
+	</bean>
+	<bean id="stock43" class="com.carbon.ecommerce.domain.Stock">
+	    <property name="id" value="12"/>
+	    <property name="stock" value="66"/>
+	    <property name="size" value="M"/>
+	</bean>
+</beans>
