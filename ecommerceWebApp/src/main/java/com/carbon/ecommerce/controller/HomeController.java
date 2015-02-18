@@ -15,8 +15,10 @@ public class HomeController extends SuperController{
     @Autowired
     private IItemService itemService;
     
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/addBasket", method = RequestMethod.POST)
     public ModelAndView welcome(ModelMap model) {
+    	int t = 0;
 		return new ModelAndView("home", model);
     }
+
 }

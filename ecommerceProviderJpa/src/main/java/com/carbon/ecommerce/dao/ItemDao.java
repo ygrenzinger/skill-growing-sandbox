@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.carbon.ecommerce.domain.Client;
 import com.carbon.ecommerce.domain.Item;
 import com.carbon.ecommerce.domain.Stock;
 
@@ -130,5 +131,16 @@ public class ItemDao extends SuperDAOImpl implements IITemDao {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public boolean isAvailableStock(Item item, Integer quantity) {
+		Query query = createQuery("from Stock where item.id = :itemId");
+		query.setLong("itemId", item.getId());
+		Stock stock = (Stock) query.uniqueResult();
+		if (stock == null || stock.getStock() < quantity) {
+			return false;
+		}
+		return true;
 	}
 }

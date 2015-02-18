@@ -23,6 +23,7 @@ import com.carbon.ecommerce.exception.BusinessException;
 import com.carbon.ecommerce.service.IClientService;
 import com.carbon.ecommerce.service.IItemService;
 import com.carbon.ecommerce.utils.Authentification;
+import com.carbon.ecommerce.utils.ItemBuilder;
 import com.carbon.ecommerce.validator.LoginValidator;
 
 @Controller
@@ -36,6 +37,8 @@ public class LoginController extends SuperController{
     
     @Autowired
     private IItemService itemService;
+
+    private com.carbon.ecommerce.utils.Item itemResult;
 
     @InitBinder(value = "authentication")
 	protected void initBinder(WebDataBinder binder) {
@@ -57,9 +60,10 @@ public class LoginController extends SuperController{
             try {
 				findClient(authentification, model);
 				findItems(model);
-				getSize(model);
+				itemResult = new com.carbon.ecommerce.utils.Item();
 			} 
             catch (BusinessException e) {
+            	//TODO NBO: Gerer les exceptions
 			}
             catch (Exception e) {
 				bindingResult.addError(new FieldError("clientError",
@@ -71,10 +75,6 @@ public class LoginController extends SuperController{
         }
     }
 
-	private void getSize(ModelMap model) {
-		//model.put("size", itemService.findSize());
-	}
-
 	private void findClient(Authentification authentification, ModelMap model)
 			throws BusinessException {
 		Client client = clientService.findClient(authentification.getLogin(), authentification.getPassword());
@@ -85,8 +85,17 @@ public class LoginController extends SuperController{
 
 	private void findItems(ModelMap model) throws BusinessException {
 		List<Item> items = new ArrayList<>();
+		List<com.carbon.ecommerce.utils.Item> itemsDto = new ArrayList<>();
 		items = itemService.findItem();
-		model.put("items", items);
+		for (Item item: items){
+			ItemBuilder b = new ItemBuilder();
+			b.price(item.getPrice());
+			b.composition(item.getComposition());
+			b.reference(item.getReference());
+			b.description(item.getDescription());
+			itemsDto.add(b.createItem());
+		}
+		model.put("items", itemsDto);
 	}
     
     @RequestMapping(value = "/createItems", method = RequestMethod.POST)
@@ -95,4 +104,12 @@ public class LoginController extends SuperController{
     	model.put("authentication", new Authentification());
     	return new ModelAndView(VIEW_LOGIN, model);
     }
+    
+	public com.carbon.ecommerce.utils.Item getItemResult() {
+		return itemResult;
+	}
+
+	public void setItemResult(com.carbon.ecommerce.utils.Item itemResult) {
+		this.itemResult = itemResult;
+	}
 }

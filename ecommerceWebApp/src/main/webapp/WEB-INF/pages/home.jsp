@@ -24,12 +24,17 @@
 					    <tr>
 					        <td style="font-size:10px;"><c:out value="${item.composition}" /></td>
 					    </tr>
-					    <tr>
+					    <%-- <tr>
 					    	<td>Taille</td>
 					        <td>
-					        	<form:select path="${size.referenceSize.size}"/>
+					        	<form:select>
+					        		<form:option value="S"/>
+					        		<form:option value="M"/>
+					        		<form:option value="L"/>
+					        		<form:option value="XL"/>
+					        	</form:select>
 							</td>
-					    </tr>
+					    </tr> --%>
 					     <tr>
 					       <td colspan="2">
 		            			<input type="submit" value="Ajouter au panier"/>

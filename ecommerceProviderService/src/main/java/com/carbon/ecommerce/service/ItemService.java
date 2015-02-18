@@ -1,5 +1,6 @@
 package com.carbon.ecommerce.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -54,9 +55,16 @@ public class ItemService extends SuperServiceImpl implements IItemService {
 
 	@Transactional
 	@Override
-	public List<ReferenceSize> findSize() {
+	public List<String> findSize() {
+		List<String> results = new ArrayList<>();
 		referenceSizeDao.setSession(getSession());
-		return referenceSizeDao.findSize();
+		List<ReferenceSize> refSize = referenceSizeDao.findSize();
+		if (refSize != null) {
+			for (ReferenceSize ref : refSize) {
+				results.add(ref.getSize());
+			}
+		}
+		return results;
 	}
 
 }

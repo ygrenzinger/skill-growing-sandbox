@@ -12,4 +12,6 @@ public interface IITemDao extends ISuperDAO {
 	 List<Stock> insertItems();
 	 
 	 void updateItemBouchon(List<Stock> stocks);
+	 
+	 boolean isAvailableStock(Item item, Integer quantity);
 }
