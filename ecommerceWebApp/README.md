@@ -8,4 +8,4 @@ Projet separee en trois couches:
 	
 Avant de lancer l'application, il est necessaire d'avoir un contexte qui va bien.
 Pour cela, lancer les scripts sql se trouvant dans le projet ecommerceProviderJpa (createTable.sql puis createReferenceSize.sql et 
-enfin createItems.sql).
+enfin createItems.sql). Ils permettront de charger votre base de donnees H2 avec les donnees minimums requis.
