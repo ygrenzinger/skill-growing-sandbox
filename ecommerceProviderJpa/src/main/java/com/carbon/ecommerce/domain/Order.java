@@ -3,6 +3,8 @@ package com.carbon.ecommerce.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ORDER_ITEM")
+@Table(name = "ORDERS")
+@AssociationOverrides({ 
+	@AssociationOverride(name = "linkOrderItemPk.item", joinColumns = @JoinColumn(name = "id_item")), 
+	@AssociationOverride(name = "linkOrderItemPk.order", joinColumns = @JoinColumn(name = "id_order"))
+	})
 public class Order implements Serializable{
 
 	private static final long serialVersionUID = 8026049918975675935L;
@@ -26,11 +32,18 @@ public class Order implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "REFERENCE_ID")
-	private List<Item> items;
+	private List<LinkOrderItem> items;
 	
 	@Column(name = "ISVALIDATE")
 	private Integer isValidate;
 	
+	public Order(){
+		super();
+	}
+	
+	public Order(Client client){
+		this.client = client;
+	}
 	
 	public Long getId() {
 		return id;
@@ -56,17 +69,5 @@ public class Order implements Serializable{
 	 */
 	public void setClient(Client client) {
 		this.client = client;
-	}
-	/**
-	 * @return the items
-	 */
-	public List<Item> getItems() {
-		return items;
-	}
-	/**
-	 * @param items the items to set
-	 */
-	public void setItems(List<Item> items) {
-		this.items = items;
 	}
 }
