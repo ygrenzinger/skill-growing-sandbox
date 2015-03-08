@@ -21,6 +21,7 @@
         <module>ecommerceProviderJpa</module>
         <module>ecommerceProviderService</module>
         <module>ecommerceWebApp</module>
+		<module>backOfficeApi</module>
     </modules>
 
     <build>

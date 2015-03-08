@@ -42,6 +42,6 @@ public class OrderService extends SuperServiceImpl implements IOrderService {
 			items.put(item.getItem(), item.getQuantity());
 		}
 		// Il y a du stock pour tous les items, on les enregistre donc.
-		orderDao.saveOrder(items, new Order(client), quantity);
+		//orderDao.saveOrder(items, new Order(client), quantity);
 	}
 }

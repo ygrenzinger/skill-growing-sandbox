@@ -3,15 +3,7 @@ package com.carbon.ecommerce.domain;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ITEM")
@@ -38,8 +30,11 @@ public class Item implements Serializable{
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade=CascadeType.ALL)
 	private Set<Stock> stocks;
 
-	
-	public Set<Stock> getStocks() {
+    @ManyToOne
+    @JoinColumn(name = "CATEGORY_ID")
+    private Category category;
+
+    public Set<Stock> getStocks() {
 		return stocks;
 	}
 	public void setStocks(Set<Stock> stocks) {
@@ -64,7 +59,7 @@ public class Item implements Serializable{
 		return reference;
 	}
 	/**
-	 * @param ref the ref to set
+	 * @param reference the ref to set
 	 */
 	public void setReference(Integer reference) {
 		this.reference = reference;
@@ -100,6 +95,12 @@ public class Item implements Serializable{
 	public void setComposition(String composition) {
 		this.composition = composition;
 	}
-	
-	
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
