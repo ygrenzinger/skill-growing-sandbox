@@ -4,6 +4,8 @@ import com.carbon.ecommerce.domain.Category;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class CategoryDao extends SuperDAOImpl{
 
@@ -17,6 +19,12 @@ public class CategoryDao extends SuperDAOImpl{
         Category category = (Category) query.uniqueResult();
 		return category;
 	}
+
+    public List<Category> findAllCategories() {
+        Query query = createQuery("from Category");
+        List<Category>  categories = (List<Category> ) query.list();
+        return categories;
+    }
 
 	public Category saveCategory(Category category) {
         category.setId((Long)save(category));

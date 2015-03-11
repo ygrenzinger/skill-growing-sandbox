@@ -97,14 +97,7 @@ public class LoginController extends SuperController{
 		}
 		model.put("items", itemsDto);
 	}
-    
-    @RequestMapping(value = "/createItems", method = RequestMethod.POST)
-    public ModelAndView createItems(ModelMap model) {
-    	itemService.insertItems();
-    	model.put("authentication", new Authentification());
-    	return new ModelAndView(VIEW_LOGIN, model);
-    }
-    
+
 	public com.carbon.ecommerce.utils.Item getItemResult() {
 		return itemResult;
 	}

@@ -29,10 +29,6 @@
 		</table>  
 		</form:form>
 		<a href="<c:url value="/subscription"/>">S'inscrire</a>
-		
-		
-		<form:form method="POST" action="createItems">
-			 <input type="submit" value="Integrer articles"/>
-		</form:form>
+
 	</body>
 </html>
