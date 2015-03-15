@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="backOffice">
+    <head lang="en">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta charset="UTF-8">
+        <title>Back Office</title>
+        <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/ng-controller-category.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="css/category.css" type="text/css" />
+    </head>
+    <body ng-controller="categoryController">
+        <div ng-init="selectedTab='category'" ng-include="'templates/dashboard.html'"></div>
+        <div id="controls">
+            <label id="labelNbCategories" for="labelNbCategories">Nombre de catégories à créer:</label>
+            <select id="nbCategories"
+                    ng-model="nbCategories"
+                    ng-options="c.row for c in nbCategoriesArray" ng-change="createNbCategoriesSelectedArray()"></select>
+            <div ng-show="nbCategories" data-ng-repeat="nbCategory in nbCategoriesSelectedArray">
+                <label id="labelNbCategories{{nbCategory}}" for="labelNbCategories{{nbCategory}}">Nom de la catégorie {{nbCategory}}:</label>
+                <input type="text" id="labelCat{{nbCategory}}" ng-model="labelCategory" ng-change="updateCategories({{nbCategory}})"/>
+            </div>
+           <button id="saveBtn" ng-click="saveCategory()" ng-show="nbCategories" class="button">Créer la catégorie</button>
+           <button id="searchAllBtn" ng-click="searchAllCategories()" class="button">Voir les catégories</button>
+        </div>
+        <div id="categories" ng-show="categories">
+            <table>
+                <tr ng-repeat="category in categories" class="category" ng-click="displayCategoryDetails(category)">
+                    <td class="text">
+                        <span>{{category.name}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="categoryDetails" ng-show="detailedCategory">
+            <ul>
+                <li><b>Id de la catégorie:</b> {{detailedCategory.id}}</li>
+                <li><b>Nom de la catégorie:</b> {{detailedCategory.name}}</li>
+            </ul>
+        </div>
+    </body>
+    <head>
+        <meta http-equiv="pragma" content="no-cache">
+    </head>
+</html>

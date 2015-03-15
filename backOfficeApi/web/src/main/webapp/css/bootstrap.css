@@ -1,0 +1,163 @@
+/*********************Bootstrap**************************/
+* {
+    box-sizing:         border-box;
+}
+
+html {
+	font-family: "Trebuchet MS",Arial,sans-serif;
+	margin: 0px;
+	padding: 0px;
+	font-size: 13px;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+select {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+}
+
+*:not(.tagit-new) > input[type=text] {
+    padding: 1px 4px;
+    border-radius: 4px;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
+
+*:not(.tagit-new) > input[type=text]:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+}
+
+.button {
+    background-color: #0088CE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(center top , #0088CE, #0077BD);
+    background-image: -webkit-linear-gradient(top , #0088CE, #0077BD);
+    background-image: linear-gradient(center top , #0088CE, #0077BD);
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-image: -moz-linear-gradient(center top , #0088CE, #008AD1);
+    background-image: -webkit-linear-gradient(top , #0088CE, #008AD1);
+    background-image: linear-gradient(center top , #0088CE, #008AD1);
+}
+
+.button:active {
+    color: rgba(255, 255, 255, 0.75);
+    background-color: #0085C9;
+}
+
+.button-grey {
+	background-color: #999999;
+	background-repeat: repeat-x;
+	background-image: -moz-linear-gradient(center top , #999999, #888888);
+	background-image: -webkit-linear-gradient(top , #999999, #888888);
+	background-image: linear-gradient(center top , #999999, #888888);
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	cursor: pointer;
+	color: white;
+	font-weight: bold;
+}
+
+.button-grey:hover {
+	background-image: -moz-linear-gradient(center top , #999999, #aaaaaa);
+	background-image: -webkit-linear-gradient(top , #999999, #aaaaaa);
+	background-image: linear-gradient(center top , #999999, #aaaaaa);
+}
+
+.button-grey:active {
+	color: rgba(255, 255, 255, 0.75);
+	background-color: #888888;
+}
+
+.navBar {
+    background-color: #1B1B1B;
+    background-image: linear-gradient(to bottom, #222222, #111111);
+    background-repeat: repeat-x;
+    border-color: #252525;
+    height: 37px;
+}
+
+.navBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navBar ul a.tab > li {
+    float: left;
+    padding: 10px 20px;
+    border-right: 1px dotted #444444;
+}
+
+.navBar ul a.tab {
+    color: #999999;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.navBar ul a.tab:hover {
+    color: white;
+}
+
+.navBar ul a.tab > li.selected {
+    background-color: #111111;
+}
+
+.navBar ul a.tab > li.selected {
+    color: white;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .navBar { height: 37px; }
+    .navBar { padding-top: 2px; }
+}
+
+#appTitle {
+    float: right;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 6px 10px
+}
+
+#supercalMenu {
+	position: absolute;
+	left: 254px;
+	top: 36px;
+	background-color: black;
+	box-shadow: 0 0 1px #999999;
+	z-index: 1;
+	padding: 5px 5px 5px 15px;
+	cursor: pointer;
+}
+
+#supercalMenu a {
+	color: #999999;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+}
+
+#supercalMenu a li {
+	padding: 4px;
+}
+
+#supercalMenu a:hover {
+    color: white;
+}

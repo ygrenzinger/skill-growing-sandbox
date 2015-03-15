@@ -13,9 +13,11 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<mapping class="com.carbon.ecommerce.domain.Client" />
+        <mapping class="com.carbon.ecommerce.domain.Category" />
 		<mapping class="com.carbon.ecommerce.domain.Item" />
 		<mapping class="com.carbon.ecommerce.domain.Stock" />
 		<mapping class="com.carbon.ecommerce.domain.ReferenceSize" />
-		
+
+
     </session-factory>
 </hibernate-configuration>

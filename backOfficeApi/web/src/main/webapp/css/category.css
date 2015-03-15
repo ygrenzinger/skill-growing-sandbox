@@ -1,0 +1,80 @@
+html, body {
+    width: 100%; /*pour la map*/
+    height: 100%; /*pour la map*/
+}
+
+#controls {
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    left: 10px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 4px 15px -5px rgba(0, 0, 0, 0);
+}
+
+#controls .formRow:not(:first-child) {
+    margin-top: 5px;
+}
+
+#categories {
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    right: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 4px 15px -5px rgba(0, 0, 0, 0);
+    background-color: white;
+    padding: 15px;
+}
+
+#categories table {
+    border-collapse: collapse;
+}
+
+#categories .category {
+    cursor: pointer;
+}
+
+#categories .category:hover {
+    background-color: #ecedeb;
+}
+
+#categories .text {
+    color: #4d4f53;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 14px;
+}
+
+#categories .text .codes {
+    color: #747678;
+    font-size: 12px;
+}
+
+#categories .price {
+    color: #e05206;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 16px;
+}
+
+#categories .category:first-child .text, #categories .category:first-child .price {
+    border-top: 1px solid #eaeaea;
+}
+
+#categoryDetails {
+    position: absolute;
+    z-index: 1;
+    top: 315px;
+    left: 10px;
+    background-color: white;
+    width: 220px;
+    padding: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 4px 15px -5px rgba(0, 0, 0, 0);
+}
+
+#categoryDetails ul {
+    padding-left: 20px;
+}

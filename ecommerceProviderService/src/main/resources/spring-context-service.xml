@@ -14,15 +14,15 @@
 	<bean id="itemDao"
 		class="com.carbon.ecommerce.dao.ItemDao">
 	</bean>
-	
+
 	<bean id="stockDao"
 		class="com.carbon.ecommerce.dao.StockDao">
 	</bean>
-	
+
 	<bean id="referenceSizeDao"
 		class="com.carbon.ecommerce.dao.ReferenceSizeDao">
 	</bean>
-	
+
 	<tx:annotation-driven />
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate4.HibernateTransactionManager">

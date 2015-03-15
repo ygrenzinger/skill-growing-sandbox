@@ -12,14 +12,14 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = -6590575895156881691L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
     @Column(name = "NAME")
 
 	private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade=CascadeType.ALL)
     private Set<Item> items;
 
 
