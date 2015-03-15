@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="backOffice">
+    <head lang="en">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta charset="UTF-8">
+        <title>Back Office</title>
+        <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/ng-controller-product.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="css/product.css" type="text/css" />
+    </head>
+    <body ng-controller="productController">
+        <div ng-init="selectedTab='product'" ng-include="'templates/dashboard.html'"></div>
+        <div id="controls">
+            <label id="labelNbCategories" for="labelNbCategories">Choix de la categorie:</label>
+            <select id="categories"
+                    ng-model="category"
+                    ng-options="c.name for c in categoriesArray"></select>
+           <button id="searchAllBtn" ng-show="category" ng-click="searchAllProducts(category)" class="button">Voir les produits</button>
+        </div>
+        <div id="products" ng-show="products">
+            <table>
+                <tr ng-repeat="product in products" class="product" ng-click="displayProductDetails(product)">
+                    <td class="text">
+                        <span>{{product.description}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="productDetails" ng-show="detailedProduct">
+            <ul>
+                <li><b>Id de l'article:</b> {{detailedProduct.id}}</li>
+                <li><b>Description de l'article:</b> {{detailedProduct.name}}</li>
+            </ul>
+        </div>
+    </body>
+    <head>
+        <meta http-equiv="pragma" content="no-cache">
+    </head>
+</html>
