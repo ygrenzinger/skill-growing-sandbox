@@ -3,12 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>backOffice-parent</artifactId>
-        <groupId>com.carbon.skillsgrowing</groupId>
+        <groupId>com.carbon.ecommerce</groupId>
+        <artifactId>backoffice-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>back-office-xsd</artifactId>
+    <packaging>jar</packaging>
 
     <build>
         <plugins>

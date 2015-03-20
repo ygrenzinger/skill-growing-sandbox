@@ -4,7 +4,7 @@
 	
 	<jxb:bindings schemaLocation="../xsd/backOffice.xsd" node="/xs:schema">
 	    <jxb:schemaBindings>
-			<jxb:package name="com.carbon.skillsgrowing.front.web.api" />
+			<jxb:package name="com.carbon.ecommerce.backoffice.api" />
 		</jxb:schemaBindings>
 	</jxb:bindings>
 	

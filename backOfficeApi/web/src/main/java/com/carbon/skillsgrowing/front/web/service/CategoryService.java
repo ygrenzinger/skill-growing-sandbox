@@ -2,6 +2,7 @@ package com.carbon.skillsgrowing.front.web.service;
 
 import com.carbon.ecommerce.dao.CategoryDao;
 import com.carbon.ecommerce.domain.Category;
+import com.carbon.skillsgrowing.front.web.service.SuperServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.hibernate.SessionFactory;
@@ -31,28 +32,28 @@ public class CategoryService extends SuperServiceImpl {
     }
 
     @Transactional
-    public List<com.carbon.skillsgrowing.front.web.api.Category> createCategories(List<Category> categories) {
+    public List<com.carbon.ecommerce.backoffice.api.Category> createCategories(List<Category> categories) {
         categoryDao.setSession(getSession());
-        List<com.carbon.skillsgrowing.front.web.api.Category> result = new ArrayList<>();
+        List<com.carbon.ecommerce.backoffice.api.Category> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
         for (Category category : categories){
             Category savedCategory = categoryDao.saveCategory(category);
-            com.carbon.skillsgrowing.front.web.api.Category cat =
-                    mapper.map(savedCategory, com.carbon.skillsgrowing.front.web.api.Category.class);
+            com.carbon.ecommerce.backoffice.api.Category cat =
+                    mapper.map(savedCategory, com.carbon.ecommerce.backoffice.api.Category.class);
             result.add(cat);
         }
         return result;
     }
 
     @Transactional
-    public List<com.carbon.skillsgrowing.front.web.api.Category> getCategories() {
-        List<com.carbon.skillsgrowing.front.web.api.Category> result = new ArrayList<>();
+    public List<com.carbon.ecommerce.backoffice.api.Category> getCategories() {
+        List<com.carbon.ecommerce.backoffice.api.Category> result = new ArrayList<>();
         categoryDao.setSession(getSession());
         List<Category> allCategories = categoryDao.findAllCategories();
         Mapper mapper = new DozerBeanMapper();
         for (Category category : allCategories){
-            com.carbon.skillsgrowing.front.web.api.Category cat =
-                    mapper.map(category, com.carbon.skillsgrowing.front.web.api.Category.class);
+            com.carbon.ecommerce.backoffice.api.Category cat =
+                    mapper.map(category, com.carbon.ecommerce.backoffice.api.Category.class);
             result.add(cat);
         }
         return result;

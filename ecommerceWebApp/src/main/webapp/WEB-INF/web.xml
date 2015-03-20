@@ -3,9 +3,7 @@
   <display-name>ECommerce Web Application</display-name>
   <servlet>
     <servlet-name>mvc-dispatcher</servlet-name>
-    <servlet-class>
-                        org.springframework.web.servlet.DispatcherServlet
-                </servlet-class>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -15,15 +13,13 @@
  
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>	
-        /WEB-INF/mvc-dispatcher-servlet.xml
+    <param-value>
+        classpath*:spring-context-jpa.xml
     	classpath*:spring-context-service.xml
-    	classpath*:spring-context-jpa.xml
+        /WEB-INF/mvc-dispatcher-servlet.xml
     </param-value>
   </context-param>
   <listener>
-    <listener-class>
-                   org.springframework.web.context.ContextLoaderListener
-                </listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 </web-app>

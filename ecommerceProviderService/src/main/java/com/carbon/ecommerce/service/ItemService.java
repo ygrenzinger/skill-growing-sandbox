@@ -1,7 +1,6 @@
 package com.carbon.ecommerce.service;
 
 import com.carbon.ecommerce.dao.IReferenceSizeDao;
-import com.carbon.ecommerce.dao.IStockDao;
 import com.carbon.ecommerce.dao.ItemDao;
 import com.carbon.ecommerce.domain.Item;
 import com.carbon.ecommerce.domain.ReferenceSize;
@@ -23,9 +22,6 @@ public class ItemService extends SuperServiceImpl implements IItemService {
 
 	@Autowired
 	private ItemDao itemDao;
-
-	@Autowired
-	private IStockDao stockDao;
 	
 	@Autowired
 	private IReferenceSizeDao referenceSizeDao;

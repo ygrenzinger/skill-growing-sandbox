@@ -31,29 +31,29 @@ public class ProductService extends SuperServiceImpl  {
     }
 
     @Transactional
-    public List<com.carbon.skillsgrowing.front.web.api.Item> createProducts(List<Item> items, Category currentCategory) {
+    public List<com.carbon.ecommerce.backoffice.api.Item> createProducts(List<Item> items, Category currentCategory) {
         productDao.setSession(getSession());
-        List<com.carbon.skillsgrowing.front.web.api.Item> result = new ArrayList<>();
+        List<com.carbon.ecommerce.backoffice.api.Item> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
         for (Item item : items){
             item.setCategory(currentCategory);
             Item temporaryItem = productDao.saveItem(item);
-            com.carbon.skillsgrowing.front.web.api.Item finalItem =
-                    mapper.map(temporaryItem, com.carbon.skillsgrowing.front.web.api.Item.class);
+            com.carbon.ecommerce.backoffice.api.Item finalItem =
+                    mapper.map(temporaryItem, com.carbon.ecommerce.backoffice.api.Item.class);
             result.add(finalItem);
         }
         return result;
     }
 
     @Transactional
-    public List<com.carbon.skillsgrowing.front.web.api.Item> getProducts() {
+    public List<com.carbon.ecommerce.backoffice.api.Item> getProducts() {
         productDao.setSession(getSession());
-        List<com.carbon.skillsgrowing.front.web.api.Item> result = new ArrayList<>();
+        List<com.carbon.ecommerce.backoffice.api.Item> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
         List<Item> allProducts = productDao.findAllProducts();
         for (Item item : allProducts) {
-            com.carbon.skillsgrowing.front.web.api.Item finalItem =
-                    mapper.map(item, com.carbon.skillsgrowing.front.web.api.Item.class);
+            com.carbon.ecommerce.backoffice.api.Item finalItem =
+                    mapper.map(item, com.carbon.ecommerce.backoffice.api.Item.class);
             result.add(finalItem);
         }
         return result;

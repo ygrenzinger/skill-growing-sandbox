@@ -9,10 +9,12 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <import resource="classpath:spring-context-service.xml" />
+
+    <mvc:annotation-driven />
 
 	<context:component-scan base-package="com.carbon.ecommerce.controller" />
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property  name="prefix">
 			<value>/WEB-INF/pages/</value>
 		</property>
@@ -20,8 +22,7 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-	
-	<mvc:annotation-driven />
+
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
@@ -32,18 +33,4 @@
       		</list>
      	</property>
     </bean>
-	
-	<bean id="clientService"
-		class="com.carbon.ecommerce.service.ClientService">
-     	<constructor-arg>
-       		<ref bean="sessionFactory" />
-    	</constructor-arg>
-	</bean>
-	
-	<bean id="itemService"
-		class="com.carbon.ecommerce.service.ItemService">
-     	<constructor-arg>
-       		<ref bean="sessionFactory" />
-    	</constructor-arg>
-	</bean>
 </beans>

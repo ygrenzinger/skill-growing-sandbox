@@ -16,7 +16,6 @@ public class Category implements Serializable {
 	private Long id;
 
     @Column(name = "NAME")
-
 	private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade=CascadeType.ALL)

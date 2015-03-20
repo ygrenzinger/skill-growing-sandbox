@@ -1,9 +1,7 @@
 package com.carbon.skillsgrowing.front.web.api.category;
 
+import com.carbon.ecommerce.backoffice.api.*;
 import com.carbon.ecommerce.domain.Category;
-import com.carbon.ecommerce.domain.Item;
-import com.carbon.skillsgrowing.front.web.api.*;
-import com.carbon.skillsgrowing.front.web.api.Error;
 import com.carbon.skillsgrowing.front.web.service.CategoryService;
 import com.carbon.skillsgrowing.front.web.service.ProductService;
 import org.slf4j.Logger;
@@ -35,9 +33,9 @@ public class CategoryResource {
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = {"application/json"}, consumes = {"application/json", "application/xml"})
     public ResponseEntity<CategoryResponse> getAllCategories() {
         CategoryResponse response = new CategoryResponse();
-        List<com.carbon.skillsgrowing.front.web.api.Category> categories = categoryService.getCategories();
+        List<com.carbon.ecommerce.backoffice.api.Category> categories = categoryService.getCategories();
         if(categories == null || categories.size()<=0){
-            response.setError(new Error());
+            response.setError(new BackOfficeError());
             response.getError().setMessage("No categories found");
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
@@ -50,11 +48,11 @@ public class CategoryResource {
         CategoryResponse response = new CategoryResponse();
         response.setRequest(request);
         if (!isValidateCategories(request)) {
-            response.setError(new Error());
+            response.setError(new BackOfficeError());
             response.getError().setMessage("There are no categories to create !");
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        List<com.carbon.skillsgrowing.front.web.api.Category> categories = categoryService.createCategories(CategoryRequestBuilder.newBuilder().withCategories(request.getCategories()).build());
+        List<com.carbon.ecommerce.backoffice.api.Category> categories = categoryService.createCategories(CategoryRequestBuilder.newBuilder().withCategories(request.getCategories()).build());
         response.getCategories().addAll(categories);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -66,11 +64,11 @@ public class CategoryResource {
         response.setRequest(request);
         Category category = categoryService.searchCategory(id);
         if (!isValidateItems(request, category)) {
-            response.setError(new Error());
+            response.setError(new BackOfficeError());
             response.getError().setMessage("There are no products to create for the category " + id);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        List<com.carbon.skillsgrowing.front.web.api.Item> products = productService.createProducts(ProductRequestBuilder.newBuilder().withProducts(request.getProducts()).build(), category);
+        List<com.carbon.ecommerce.backoffice.api.Item> products = productService.createProducts(ProductRequestBuilder.newBuilder().withProducts(request.getProducts()).build(), category);
         response.getProducts().addAll(products);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -80,7 +78,7 @@ public class CategoryResource {
         ProductResponse response = new ProductResponse();
         Category category = categoryService.searchCategory(id);
         if (category == null) {
-            response.setError(new Error());
+            response.setError(new BackOfficeError());
             response.getError().setMessage("There are no products to search for the category " + id);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
@@ -100,7 +98,7 @@ public class CategoryResource {
     public ResponseEntity<CategoryResponse> handleCategoryException(Exception e){
         log.error("Technical exception occurred in category resource", e);
         CategoryResponse res = new CategoryResponse();
-        res.setError(new Error());
+        res.setError(new BackOfficeError());
         res.getError().setMessage(e.getMessage());
         return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
     }

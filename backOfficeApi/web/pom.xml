@@ -3,8 +3,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-            <artifactId>backOffice-parent</artifactId>
-            <groupId>com.carbon.skillsgrowing</groupId>
+            <artifactId>backoffice-parent</artifactId>
+            <groupId>com.carbon.ecommerce</groupId>
             <version>1.0-SNAPSHOT</version>
     </parent>
     <properties>
@@ -56,7 +56,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.carbon.skillsgrowing</groupId>
+            <groupId>com.carbon.ecommerce</groupId>
             <artifactId>back-office-xsd</artifactId>
             <version>${project.version}</version>
         </dependency>
