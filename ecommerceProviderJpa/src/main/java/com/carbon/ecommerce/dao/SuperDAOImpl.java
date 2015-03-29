@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-public class SuperDAOImpl  implements ISuperDAO{
+public class SuperDAOImpl  implements ISuperDAO {
 
 	private Session session;
 	

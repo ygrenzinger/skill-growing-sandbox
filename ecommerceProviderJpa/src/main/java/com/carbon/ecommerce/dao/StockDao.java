@@ -30,10 +30,6 @@ public class StockDao extends SuperDAOImpl implements IStockDao {
 		Query query = createQuery("from Stock where item.id = :idItem");
 		query.setLong("idItem", item.getId());
 		Stock stock = (Stock) query.uniqueResult();
-		if (stock != null && stock.getStock() - quantity > 0) {
-			return true;
-		}
-		return false;
-		
+		return stock != null && stock.getStock() - quantity > 0;
 	}
 }

@@ -50,7 +50,7 @@ public class ProductService extends SuperServiceImpl  {
         productDao.setSession(getSession());
         List<com.carbon.ecommerce.backoffice.api.Item> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
-        List<Item> allProducts = productDao.findAllProducts();
+        List<Item> allProducts = productDao.findAllItems();
         for (Item item : allProducts) {
             com.carbon.ecommerce.backoffice.api.Item finalItem =
                     mapper.map(item, com.carbon.ecommerce.backoffice.api.Item.class);

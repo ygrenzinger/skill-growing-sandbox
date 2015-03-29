@@ -48,7 +48,7 @@ public class LoginController extends SuperController{
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView welcome(ModelMap model) {
         model.put("authentication", new Authentification());
-        return new ModelAndView(VIEW_LOGIN, model);
+        return new ModelAndView(VIEW_HOME, model);
     }
 
     @RequestMapping(value = "/validateLogin", method = RequestMethod.POST)

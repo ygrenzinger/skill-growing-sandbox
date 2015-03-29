@@ -29,13 +29,10 @@ public class ItemDao extends SuperDAOImpl {
 		Query query = createQuery("from Stock where item.id = :itemId");
 		query.setLong("itemId", item.getId());
 		Stock stock = (Stock) query.uniqueResult();
-		if (stock == null || stock.getStock() < quantity) {
-			return false;
-		}
-		return true;
+		return !(stock == null || stock.getStock() < quantity);
 	}
 
-    public List<Item> findAllProducts() {
+    public List<Item> findAllItems() {
         Query query = createQuery("from Item");
         List<Item>  items = (List<Item> ) query.list();
         return items;
