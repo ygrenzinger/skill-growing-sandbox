@@ -34,73 +34,59 @@ public class Item implements Serializable{
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    public Set<Stock> getStocks() {
-		return stocks;
+	public Long getId() {
+		return id;
 	}
-	public void setStocks(Set<Stock> stocks) {
-		this.stocks = stocks;
-	}
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	/**
-	 * @return the reference
-	 */
-	public Integer getReference() {
-		return reference;
-	}
-	/**
-	 * @param reference the ref to set
-	 */
-	public void setReference(Integer reference) {
-		this.reference = reference;
-	}
-	/**
-	 * @return the price
-	 */
-	public Float getPrice() {
-		return price;
-	}
-	/**
-	 * @param price the price to set
-	 */
-	public void setPrice(Float price) {
-		this.price = price;
-	}
-	/**
-	 * @param id the id to set
-	 */
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
+	public String getDescription() {
+		return description;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getReference() {
+		return reference;
+	}
+
+	public void setReference(Integer reference) {
+		this.reference = reference;
+	}
+
 	public String getComposition() {
 		return composition;
 	}
+
 	public void setComposition(String composition) {
 		this.composition = composition;
 	}
 
-    public Category getCategory() {
-        return category;
-    }
+	public Float getPrice() {
+		return price;
+	}
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
+	public Set<Stock> getStocks() {
+		return stocks;
+	}
+
+	public void setStocks(Set<Stock> stocks) {
+		this.stocks = stocks;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 }

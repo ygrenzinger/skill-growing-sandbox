@@ -19,8 +19,9 @@ public class ItemDao extends SuperDAOImpl {
         return item;
     }
 
-	public List<Item> findItem() {
-		Query query = createQuery("from Item");
+	public List<Item> findItemByID(int id) {
+		Query query = createQuery("from Item where id = :itemId");
+		query.setLong("itemId", id);
 		List<Item> items = (List<Item>) query.list();
 		return items;
 	}
