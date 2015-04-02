@@ -4,6 +4,8 @@ import com.carbon.ecommerce.backoffice.api.*;
 import com.carbon.ecommerce.domain.Category;
 import com.carbon.skillsgrowing.front.web.service.CategoryService;
 import com.carbon.skillsgrowing.front.web.service.ProductService;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -68,7 +70,7 @@ public class CategoryResource {
             response.getError().setMessage("There are no products to create for the category " + id);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        List<com.carbon.ecommerce.backoffice.api.Item> products = productService.createProducts(ProductRequestBuilder.newBuilder().withProducts(request.getProducts()).build(), category);
+        List<Product> products = productService.createProducts(ProductBuilder.newBuilder().withProducts(request.getProducts()).build(), category);
         response.getProducts().addAll(products);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -76,13 +78,16 @@ public class CategoryResource {
     @RequestMapping(value = "/{id}/products", method = RequestMethod.GET, produces = {"application/json"}, consumes = {"application/json"})
     public ResponseEntity<ProductResponse> getAllProductsForCategory(@PathVariable Integer id) {
         ProductResponse response = new ProductResponse();
+        Mapper mapper = new DozerBeanMapper();
         Category category = categoryService.searchCategory(id);
         if (category == null) {
             response.setError(new BackOfficeError());
             response.getError().setMessage("There are no products to search for the category " + id);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        response.getProducts().addAll(productService.getProducts());
+        for (com.carbon.ecommerce.domain.Item item : category.getItems()){
+            response.getProducts().add(mapper.map(item, com.carbon.ecommerce.backoffice.api.Product.class));
+        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

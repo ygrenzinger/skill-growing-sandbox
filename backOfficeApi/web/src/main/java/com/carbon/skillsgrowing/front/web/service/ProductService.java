@@ -31,30 +31,30 @@ public class ProductService extends SuperServiceImpl  {
     }
 
     @Transactional
-    public List<com.carbon.ecommerce.backoffice.api.Item> createProducts(List<Item> items, Category currentCategory) {
+    public List<com.carbon.ecommerce.backoffice.api.Product> createProducts(List<Item> products, Category currentCategory) {
         productDao.setSession(getSession());
-        List<com.carbon.ecommerce.backoffice.api.Item> result = new ArrayList<>();
+        List<com.carbon.ecommerce.backoffice.api.Product> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
-        for (Item item : items){
-            item.setCategory(currentCategory);
-            Item temporaryItem = productDao.saveItem(item);
-            com.carbon.ecommerce.backoffice.api.Item finalItem =
-                    mapper.map(temporaryItem, com.carbon.ecommerce.backoffice.api.Item.class);
-            result.add(finalItem);
+        for (Item product : products){
+            product.setCategory(currentCategory);
+            Item temporaryProduct = productDao.saveItem(product);
+            com.carbon.ecommerce.backoffice.api.Product finalProduct =
+                    mapper.map(temporaryProduct, com.carbon.ecommerce.backoffice.api.Product.class);
+            result.add(finalProduct);
         }
         return result;
     }
 
     @Transactional
-    public List<com.carbon.ecommerce.backoffice.api.Item> getProducts() {
+    public List<com.carbon.ecommerce.backoffice.api.Product> getProducts() {
         productDao.setSession(getSession());
-        List<com.carbon.ecommerce.backoffice.api.Item> result = new ArrayList<>();
+        List<com.carbon.ecommerce.backoffice.api.Product> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
         List<Item> allProducts = productDao.findAllItems();
         for (Item item : allProducts) {
-            com.carbon.ecommerce.backoffice.api.Item finalItem =
-                    mapper.map(item, com.carbon.ecommerce.backoffice.api.Item.class);
-            result.add(finalItem);
+            com.carbon.ecommerce.backoffice.api.Product finalProduct =
+                    mapper.map(item, com.carbon.ecommerce.backoffice.api.Product.class);
+            result.add(finalProduct);
         }
         return result;
 

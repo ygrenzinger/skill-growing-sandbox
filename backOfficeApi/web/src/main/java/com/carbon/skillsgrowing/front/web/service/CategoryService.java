@@ -2,7 +2,6 @@ package com.carbon.skillsgrowing.front.web.service;
 
 import com.carbon.ecommerce.dao.CategoryDao;
 import com.carbon.ecommerce.domain.Category;
-import com.carbon.skillsgrowing.front.web.service.SuperServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.hibernate.SessionFactory;
@@ -47,16 +46,14 @@ public class CategoryService extends SuperServiceImpl {
 
     @Transactional
     public List<com.carbon.ecommerce.backoffice.api.Category> getCategories() {
-        List<com.carbon.ecommerce.backoffice.api.Category> result = new ArrayList<>();
         categoryDao.setSession(getSession());
-        List<Category> allCategories = categoryDao.findAllCategories();
+        List<com.carbon.ecommerce.backoffice.api.Category> categoriesDto = new ArrayList<>();
+        List<Category> categories = categoryDao.findAllCategories();
         Mapper mapper = new DozerBeanMapper();
-        for (Category category : allCategories){
-            com.carbon.ecommerce.backoffice.api.Category cat =
-                    mapper.map(category, com.carbon.ecommerce.backoffice.api.Category.class);
-            result.add(cat);
+        for (Category category : categories) {
+            categoriesDto.add(mapper.map(category, com.carbon.ecommerce.backoffice.api.Category.class));
         }
-        return result;
+        return categoriesDto;
     }
 
     @Transactional

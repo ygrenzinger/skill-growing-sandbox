@@ -61,6 +61,8 @@ function categoryController($scope, $http) {
     $scope.createNbCategoriesSelectedArray=function(){
         $scope.nbCategoriesSelectedArray = [];
         $scope.categoriesLabel = [];
+        $scope.products = null;
+        $scope.detailedProduct = null;
         for(var i=1;i<=$scope.nbCategories.row;i++) {
             $scope.nbCategoriesSelectedArray.push(i);
             $scope.categoriesLabel.push({row: i, name:""});

@@ -13,11 +13,37 @@
     <body ng-controller="productController">
         <div ng-init="selectedTab='product'" ng-include="'templates/dashboard.html'"></div>
         <div id="controls">
-            <label id="labelNbCategories" for="labelNbCategories">Choix de la categorie:</label>
+            <label id="labelCategories" for="labelCategories">Choix de la categorie:</label>
             <select id="categories"
                     ng-model="category"
                     ng-options="c.name for c in categoriesArray"></select>
-           <button id="searchAllBtn" ng-show="category" ng-click="searchAllProducts(category)" class="button">Voir les produits</button>
+
+            <div ng-show="category">
+
+                <label id="labelNbProducts" for="labelNbProducts">Nombre de produits à créer:</label>
+                <select id="nbProducts"
+                        ng-model="nbProducts"
+                        ng-options="p.row for p in nbProductsArray" ng-change="createNbProductsSelectedArray()"></select>
+                <div ng-show="nbProducts" data-ng-repeat="nbProduct in nbProductsSelectedArray">
+
+                    <label id="labelProduct{{nbProduct}}" for="labelProduct{{nbProduct}}">Description du produit {{nbProduct}}:</label>
+                    <input type="text" id="labelProd{{nbProduct}}" ng-model="descriptionProduct" ng-change="updateLabelProduct({{nbProduct}})"/>
+
+                    <label id="refProduct{{nbProduct}}" for="refProduct{{nbProduct}}">Reference du produit {{nbProduct}}:</label>
+                    <input type="text" id="refProd{{nbProduct}}" ng-model="refProduct" ng-change="updateRefProduct({{nbProduct}})"/>
+
+                    <label id="compositionProduct{{nbProduct}}" for="compositionProduct{{nbProduct}}">Composition du produit {{nbProduct}}:</label>
+                    <input type="text" id="compositionProd{{nbProduct}}" ng-model="compositionProduct" ng-change="updateCompositionProduct({{nbProduct}})"/>
+
+                    <label id="priceProduct{{nbProduct}}" for="priceProduct{{nbProduct}}">Prix du produit {{nbProduct}}:</label>
+                    <input type="text" id="priceProd{{nbProduct}}" ng-model="priceProduct" ng-change="updatePriceProduct({{nbProduct}})"/>
+
+
+                </div>
+            </div>
+
+            <button id="saveBtn" ng-click="saveProduct(category)" ng-show="nbProducts" class="button">Créer le produit</button>
+            <button id="searchAllBtn" ng-show="category" ng-click="searchAllProducts(category)" class="button">Voir les produits</button>
         </div>
         <div id="products" ng-show="products">
             <table>
@@ -30,8 +56,10 @@
         </div>
         <div id="productDetails" ng-show="detailedProduct">
             <ul>
-                <li><b>Id de l'article:</b> {{detailedProduct.id}}</li>
-                <li><b>Description de l'article:</b> {{detailedProduct.name}}</li>
+                <li><b>Composition de l'article:</b> {{detailedProduct.composition}}</li>
+                <li><b>Description de l'article:</b> {{detailedProduct.description}}</li>
+                <li><b>Reference de l'article:</b> {{detailedProduct.reference}}</li>
+                <li><b>Prix de l'article:</b> {{detailedProduct.price}}€</li>
             </ul>
         </div>
     </body>
