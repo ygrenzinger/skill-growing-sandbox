@@ -29,12 +29,13 @@ public class ItemService extends SuperServiceImpl implements IItemService {
 	@Transactional
 	@Override
 	public List<Item> findItem() throws BusinessException{
-		itemDao.setSession(getSession());
+		/*itemDao.setSession(getSession());
 		List<Item> items = itemDao.findItem();
 		if (items == null || items.isEmpty()){
 			throw new BusinessException("Aucun article n'a ete trouvee");
 		}
-		return items;
+		return items;*/
+        return null;
 	}
 
 	@Transactional
