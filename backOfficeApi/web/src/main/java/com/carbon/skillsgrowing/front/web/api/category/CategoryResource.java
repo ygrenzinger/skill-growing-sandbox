@@ -1,9 +1,9 @@
 package com.carbon.skillsgrowing.front.web.api.category;
 
 import com.carbon.ecommerce.backoffice.api.*;
-import com.carbon.ecommerce.domain.Category;
-import com.carbon.skillsgrowing.front.web.service.CategoryService;
+import com.carbon.ecommerce.domain.Team;
 import com.carbon.skillsgrowing.front.web.service.ProductService;
+import com.carbon.skillsgrowing.front.web.service.CategoryService;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
@@ -33,10 +33,10 @@ public class CategoryResource {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = {"application/json"}, consumes = {"application/json", "application/xml"})
-    public ResponseEntity<CategoryResponse> getAllCategories() {
-        CategoryResponse response = new CategoryResponse();
-        List<com.carbon.ecommerce.backoffice.api.Category> categories = categoryService.getCategories();
-        if(categories == null || categories.size()<=0){
+    public ResponseEntity<TeamResponse> getAllCategories() {
+        TeamResponse response = new TeamResponse();
+        List<com.carbon.ecommerce.backoffice.api.Team> categories = categoryService.getCategories();
+        if (categories == null || categories.size() <= 0) {
             response.setError(new BackOfficeError());
             response.getError().setMessage("No categories found");
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
@@ -46,63 +46,63 @@ public class CategoryResource {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
-    public ResponseEntity<CategoryResponse> createCategories(@RequestBody CategoryRequest request) {
-        CategoryResponse response = new CategoryResponse();
+    public ResponseEntity<TeamResponse> createCategories(@RequestBody TeamRequest request) {
+        TeamResponse response = new TeamResponse();
         response.setRequest(request);
         if (!isValidateCategories(request)) {
             response.setError(new BackOfficeError());
             response.getError().setMessage("There are no categories to create !");
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        List<com.carbon.ecommerce.backoffice.api.Category> categories = categoryService.createCategories(CategoryRequestBuilder.newBuilder().withCategories(request.getCategories()).build());
+        List<com.carbon.ecommerce.backoffice.api.Team> categories = categoryService.createCategories(CategoryRequestBuilder.newBuilder().withCategories(request.getCategories()).build());
         response.getCategories().addAll(categories);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}/products", method = RequestMethod.POST, produces = {"application/json"}, consumes = {"application/json"})
-    public ResponseEntity<ProductResponse> createProductsByCategory(@PathVariable long id,
-                                                                    @RequestBody ProductRequest request) {
+    public ResponseEntity<ProductResponse> createProductsByTeam(@PathVariable long id,
+                                                                @RequestBody ProductRequest request) {
         ProductResponse response = new ProductResponse();
         response.setRequest(request);
-        Category category = categoryService.searchCategory(id);
-        if (!isValidateItems(request, category)) {
+        Team team = categoryService.searchTeam(id);
+        if (!isValidateItems(request, team)) {
             response.setError(new BackOfficeError());
-            response.getError().setMessage("There are no products to create for the category " + id);
+            response.getError().setMessage("There are no products to create for the team " + id);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        List<Product> products = productService.createProducts(ProductBuilder.newBuilder().withProducts(request.getProducts()).build(), category);
+        List<Product> products = productService.createProducts(ProductBuilder.newBuilder().withProducts(request.getProducts()).build(), team);
         response.getProducts().addAll(products);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}/products", method = RequestMethod.GET, produces = {"application/json"}, consumes = {"application/json"})
-    public ResponseEntity<ProductResponse> getAllProductsForCategory(@PathVariable Integer id) {
+    public ResponseEntity<ProductResponse> getAllProductsForTeam(@PathVariable Integer id) {
         ProductResponse response = new ProductResponse();
         Mapper mapper = new DozerBeanMapper();
-        Category category = categoryService.searchCategory(id);
-        if (category == null) {
+        Team team = categoryService.searchTeam(id);
+        if (team == null) {
             response.setError(new BackOfficeError());
-            response.getError().setMessage("There are no products to search for the category " + id);
+            response.getError().setMessage("There are no products to search for the team " + id);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        for (com.carbon.ecommerce.domain.Item item : category.getItems()){
+        for (com.carbon.ecommerce.domain.Item item : team.getItems()) {
             response.getProducts().add(mapper.map(item, com.carbon.ecommerce.backoffice.api.Product.class));
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    private boolean isValidateCategories(CategoryRequest request) {
+    private boolean isValidateCategories(TeamRequest request) {
         return !StringUtils.isEmpty(request.getCategories());
     }
 
-    private boolean isValidateItems(ProductRequest request, Category category) {
-        return !(StringUtils.isEmpty(request.getProducts()) || category == null);
+    private boolean isValidateItems(ProductRequest request, Team team) {
+        return !(StringUtils.isEmpty(request.getProducts()) || team == null);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<CategoryResponse> handleCategoryException(Exception e){
-        log.error("Technical exception occurred in category resource", e);
-        CategoryResponse res = new CategoryResponse();
+    public ResponseEntity<TeamResponse> handleTeamException(Exception e) {
+        log.error("Technical exception occurred in team resource", e);
+        TeamResponse res = new TeamResponse();
         res.setError(new BackOfficeError());
         res.getError().setMessage(e.getMessage());
         return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);

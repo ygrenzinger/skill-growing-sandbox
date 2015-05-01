@@ -1,7 +1,7 @@
 package com.carbon.skillsgrowing.front.web.service;
 
-import com.carbon.ecommerce.dao.CategoryDao;
-import com.carbon.ecommerce.domain.Category;
+import com.carbon.ecommerce.dao.TeamDao;
+import com.carbon.ecommerce.domain.Team;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.hibernate.SessionFactory;
@@ -21,45 +21,40 @@ public class CategoryService extends SuperServiceImpl {
     private final static Logger logger = LoggerFactory.getLogger(CategoryService.class);
 
     @Autowired
-    private CategoryDao categoryDao;
+    private TeamDao teamDao;
 
     @Inject
-    public CategoryService(CategoryDao categoryDao, SessionFactory sessionFactory)
-    {
+    public CategoryService(TeamDao teamDao, SessionFactory sessionFactory) {
         super(sessionFactory);
-        this.categoryDao = categoryDao;
+        this.teamDao = teamDao;
     }
 
     @Transactional
-    public List<com.carbon.ecommerce.backoffice.api.Category> createCategories(List<Category> categories) {
-        categoryDao.setSession(getSession());
-        List<com.carbon.ecommerce.backoffice.api.Category> result = new ArrayList<>();
+    public List<com.carbon.ecommerce.backoffice.api.Team> createCategories(List<Team> categories) {
+        List<com.carbon.ecommerce.backoffice.api.Team> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
-        for (Category category : categories){
-            Category savedCategory = categoryDao.saveCategory(category);
-            com.carbon.ecommerce.backoffice.api.Category cat =
-                    mapper.map(savedCategory, com.carbon.ecommerce.backoffice.api.Category.class);
+        for (Team team : categories) {
+            Team savedTeam = teamDao.saveTeam(team);
+            com.carbon.ecommerce.backoffice.api.Team cat =
+                    mapper.map(savedTeam, com.carbon.ecommerce.backoffice.api.Team.class);
             result.add(cat);
         }
         return result;
     }
 
     @Transactional
-    public List<com.carbon.ecommerce.backoffice.api.Category> getCategories() {
-        categoryDao.setSession(getSession());
-        List<com.carbon.ecommerce.backoffice.api.Category> categoriesDto = new ArrayList<>();
-        List<Category> categories = categoryDao.findAllCategories();
+    public List<com.carbon.ecommerce.backoffice.api.Team> getCategories() {
+        List<com.carbon.ecommerce.backoffice.api.Team> categoriesDto = new ArrayList<>();
+        List<Team> categories = teamDao.findAllTeams();
         Mapper mapper = new DozerBeanMapper();
-        for (Category category : categories) {
-            categoriesDto.add(mapper.map(category, com.carbon.ecommerce.backoffice.api.Category.class));
+        for (Team team : categories) {
+            categoriesDto.add(mapper.map(team, com.carbon.ecommerce.backoffice.api.Team.class));
         }
         return categoriesDto;
     }
 
     @Transactional
-    public Category searchCategory(long categoryId)
-    {
-        categoryDao.setSession(getSession());
-        return categoryDao.find(categoryId);
+    public Team searchTeam(long teamId) {
+        return teamDao.find(teamId);
     }
 }

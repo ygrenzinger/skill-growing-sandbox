@@ -6,12 +6,12 @@
         <title>Back Office</title>
         <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="js/ng-controller-category.js"></script>
+        <script type="text/javascript" src="js/ng-controller-team.js"></script>
         <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-        <link rel="stylesheet" href="css/category.css" type="text/css" />
+        <link rel="stylesheet" href="css/team.css" type="text/css" />
     </head>
     <body ng-controller="categoryController">
-        <div ng-init="selectedTab='category'" ng-include="'templates/dashboard.html'"></div>
+        <div ng-init="selectedTab='team'" ng-include="'templates/dashboard.html'"></div>
         <div id="controls">
             <label id="labelNbCategories" for="labelNbCategories">Nombre de catégories à créer:</label>
             <select id="nbCategories"
@@ -26,9 +26,9 @@
         </div>
         <div id="categories" ng-show="categories">
             <table>
-                <tr ng-repeat="category in categories" class="category" ng-click="displayCategoryDetails(category)">
+                <tr ng-repeat="team in categories" class="team" ng-click="displayCategoryDetails(team)">
                     <td class="text">
-                        <span>{{category.name}}</span>
+                        <span>{{team.name}}</span>
                     </td>
                 </tr>
             </table>

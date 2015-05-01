@@ -4,19 +4,19 @@
         targetNamespace="http://example.com/"
         xmlns:t="http://example.com/">
 
-    <xs:element name="CategoryResponse">
+    <xs:element name="TeamResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="request" type="t:CategoryRequest" minOccurs="1" maxOccurs="1"/>
-                <xs:element name="categories" type="t:Category" minOccurs="0"  maxOccurs="unbounded"/>
+                <xs:element name="request" type="t:TeamRequest" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="categories" type="t:Team" minOccurs="0"  maxOccurs="unbounded"/>
                 <xs:element name="error" type="t:BackOfficeError" minOccurs="0" maxOccurs="1"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="CategoryRequest" type="t:CategoryRequest"/>
+    <xs:element name="TeamRequest" type="t:TeamRequest"/>
 
-    <xs:complexType name="CategoryRequest">
+    <xs:complexType name="TeamRequest">
         <xs:sequence>
             <xs:element name="categories" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -63,9 +63,9 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:element name="Category" type="t:Category"/>
+    <xs:element name="Team" type="t:Team"/>
 
-    <xs:complexType name="Category">
+    <xs:complexType name="Team">
         <xs:sequence>
             <xs:element name="id" type="xs:int" minOccurs="1" maxOccurs="1"/>
             <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>

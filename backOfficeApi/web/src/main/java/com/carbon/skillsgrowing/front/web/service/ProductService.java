@@ -1,7 +1,7 @@
 package com.carbon.skillsgrowing.front.web.service;
 
 import com.carbon.ecommerce.dao.ItemDao;
-import com.carbon.ecommerce.domain.Category;
+import com.carbon.ecommerce.domain.Team;
 import com.carbon.ecommerce.domain.Item;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProductService extends SuperServiceImpl  {
+public class ProductService extends SuperServiceImpl {
 
     private final static Logger logger = LoggerFactory.getLogger(ProductService.class);
 
@@ -31,12 +31,11 @@ public class ProductService extends SuperServiceImpl  {
     }
 
     @Transactional
-    public List<com.carbon.ecommerce.backoffice.api.Product> createProducts(List<Item> products, Category currentCategory) {
-        productDao.setSession(getSession());
+    public List<com.carbon.ecommerce.backoffice.api.Product> createProducts(List<Item> products, Team currentTeam) {
         List<com.carbon.ecommerce.backoffice.api.Product> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
-        for (Item product : products){
-            product.setCategory(currentCategory);
+        for (Item product : products) {
+            product.setTeam(currentTeam);
             Item temporaryProduct = productDao.saveItem(product);
             com.carbon.ecommerce.backoffice.api.Product finalProduct =
                     mapper.map(temporaryProduct, com.carbon.ecommerce.backoffice.api.Product.class);
@@ -47,7 +46,6 @@ public class ProductService extends SuperServiceImpl  {
 
     @Transactional
     public List<com.carbon.ecommerce.backoffice.api.Product> getProducts() {
-        productDao.setSession(getSession());
         List<com.carbon.ecommerce.backoffice.api.Product> result = new ArrayList<>();
         Mapper mapper = new DozerBeanMapper();
         List<Item> allProducts = productDao.findAllItems();

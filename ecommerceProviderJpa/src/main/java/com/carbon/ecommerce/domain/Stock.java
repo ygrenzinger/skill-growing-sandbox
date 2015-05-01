@@ -15,14 +15,14 @@ public class Stock implements Serializable {
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "SIZE")
+	@Column(name = "SIZE", nullable = false)
 	private Size size;
 	
-	@Column(name = "STOCK")
-	private Integer stock;
+	@Column(name = "AVAILABLE", nullable = false)
+	private int available = 0;
 
-	@ManyToOne
-	@JoinColumn(name = "REFERENCE_ID")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ITEM_ID", nullable = false)
 	private Item item;
 	
 	public Long getId() {
@@ -49,12 +49,12 @@ public class Stock implements Serializable {
 		this.size = size;
 	}
 
-	public Integer getStock() {
-		return stock;
+	public int getAvailable() {
+		return available;
 	}
 
-	public void setStock(Integer stock) {
-		this.stock = stock;
+	public void setAvailable(int available) {
+		this.available = available;
 	}
 	
 }

@@ -1,30 +1,29 @@
 package com.carbon.ecommerce.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.carbon.ecommerce.dao.OrderDao;
+import com.carbon.ecommerce.dao.StockDao;
+import com.carbon.ecommerce.domain.Client;
+import com.carbon.ecommerce.domain.Item;
+import com.carbon.ecommerce.domain.Size;
+import com.carbon.ecommerce.exception.BusinessException;
+import com.carbon.ecommerce.model.ItemDto;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.carbon.ecommerce.dao.IOrderDao;
-import com.carbon.ecommerce.dao.IStockDao;
-import com.carbon.ecommerce.domain.Client;
-import com.carbon.ecommerce.domain.Item;
-import com.carbon.ecommerce.domain.Order;
-import com.carbon.ecommerce.exception.BusinessException;
-import com.carbon.ecommerce.model.ItemDto;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService extends SuperServiceImpl implements IOrderService {
 	
 	@Autowired
-	private IStockDao stockDao;
+	private StockDao stockDao;
 	
 	@Autowired
-	private IOrderDao orderDao;
+	private OrderDao orderDao;
 	
 	public OrderService(SessionFactory sessionFactory) {
 		super(sessionFactory);
@@ -36,7 +35,7 @@ public class OrderService extends SuperServiceImpl implements IOrderService {
 		 Map<Item, Integer>items = new HashMap<>();
 		// Pour chaque item reservee, on va verifier qu'il y a du stock disponibles
 		for (ItemDto item : itemDtos) {
-			if (!stockDao.existStock(item.getItem(), item.getQuantity())) {
+			if (!stockDao.existStock(item.getItem(), item.getQuantity(), Size.S)) {
 				throw new BusinessException("L'item dont l'id est " + item.getItem().getId() + " n'a plus de stock disponibles");
 			}
 			items.put(item.getItem(), item.getQuantity());

@@ -1,13 +1,13 @@
 package com.carbon.skillsgrowing.front.web.api.category;
 
-import com.carbon.ecommerce.domain.Category;
+import com.carbon.ecommerce.domain.Team;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryRequestBuilder {
 
-  private List<Category> categories;
+  private List<Team> categories;
 
     private CategoryRequestBuilder(){}
 
@@ -17,20 +17,20 @@ public class CategoryRequestBuilder {
 
 
     public CategoryRequestBuilder withCategories(List<String> categoriesLabel) {
-        Category category;
+        Team team;
         categories = new ArrayList<>();
         if(categoriesLabel != null) {
             for (String categoryLabel : categoriesLabel) {
-                category = new Category();
-                category.setName(categoryLabel);
-                categories.add(category);
+                team = new Team();
+                team.setName(categoryLabel);
+                categories.add(team);
             }
         }
         return this;
     }
 
 
-    public List<Category> build() {
+    public List<Team> build() {
         return categories;
     }
 }

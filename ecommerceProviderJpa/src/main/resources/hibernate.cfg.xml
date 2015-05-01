@@ -8,13 +8,12 @@
 		<!-- TODO A externaliser dans un fichier -->
 		<property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
 		<property name="show_sql">true</property>
-		<property name="hibernate.default_schema">test</property>
-		<property name="hibernate.hbm2ddl.auto">create-drop</property>
+		<property name="hibernate.default_schema">ECOMMERCE</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<mapping class="com.carbon.ecommerce.domain.Client" />
-        <mapping class="com.carbon.ecommerce.domain.Category" />
+        <mapping class="com.carbon.ecommerce.domain.Team" />
 		<mapping class="com.carbon.ecommerce.domain.Item" />
 		<mapping class="com.carbon.ecommerce.domain.Stock" />
-		<mapping class="com.carbon.ecommerce.domain.ReferenceSize" />
     </session-factory>
 </hibernate-configuration>

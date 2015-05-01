@@ -1,25 +1,22 @@
 package com.carbon.ecommerce.dao;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
 import com.carbon.ecommerce.domain.Item;
 import com.carbon.ecommerce.domain.LinkOrderItem;
 import com.carbon.ecommerce.domain.LinkOrderItemPk;
 import com.carbon.ecommerce.domain.Order;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Repository
-public class OrderDao extends SuperDAOImpl implements IOrderDao {
+import java.util.List;
 
-	@Override
-	public void saveOrder(List<Item> items, Order order,
-			Integer quantity) {
+public class OrderDao extends SuperDAO {
+
+	public void saveOrder(List<Item> items, Order order, Integer quantity) {
 		LinkOrderItem linkOrderItem;
-		order.setId((Long)save(order));
+		order = (Order) merge(order);
 		for (Item item: items){
 			linkOrderItem = new LinkOrderItem(new LinkOrderItemPk(item, order), quantity);
-			save(linkOrderItem);
+			merge(linkOrderItem);
 		}
 	}
 }

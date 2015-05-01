@@ -15,10 +15,10 @@
         <div id="controls">
             <label id="labelCategories" for="labelCategories">Choix de la categorie:</label>
             <select id="categories"
-                    ng-model="category"
+                    ng-model="team"
                     ng-options="c.name for c in categoriesArray"></select>
 
-            <div ng-show="category">
+            <div ng-show="team">
 
                 <label id="labelNbProducts" for="labelNbProducts">Nombre de produits à créer:</label>
                 <select id="nbProducts"
@@ -42,8 +42,8 @@
                 </div>
             </div>
 
-            <button id="saveBtn" ng-click="saveProduct(category)" ng-show="nbProducts" class="button">Créer le produit</button>
-            <button id="searchAllBtn" ng-show="category" ng-click="searchAllProducts(category)" class="button">Voir les produits</button>
+            <button id="saveBtn" ng-click="saveProduct(team)" ng-show="nbProducts" class="button">Créer le produit</button>
+            <button id="searchAllBtn" ng-show="team" ng-click="searchAllProducts(team)" class="button">Voir les produits</button>
         </div>
         <div id="products" ng-show="products">
             <table>

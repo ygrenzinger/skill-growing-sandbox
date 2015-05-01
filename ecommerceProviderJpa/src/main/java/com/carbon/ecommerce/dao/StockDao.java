@@ -1,35 +1,34 @@
 package com.carbon.ecommerce.dao;
 
+import com.carbon.ecommerce.domain.Item;
+import com.carbon.ecommerce.domain.Size;
+import com.carbon.ecommerce.domain.Stock;
+import org.hibernate.Query;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.springframework.stereotype.Repository;
+public class StockDao extends SuperDAO {
 
-import com.carbon.ecommerce.domain.Item;
-import com.carbon.ecommerce.domain.Stock;
+    public List<Stock> insertStocks(List<Stock> stocks) {
+        List<Stock> result = new ArrayList<>();
+        for (Stock stock : stocks) {
+            result.add((Stock) merge(stock));
+        }
+        return result;
+    }
 
-@Repository
-public class StockDao extends SuperDAOImpl implements IStockDao {
+    public boolean existStock(Item item, Integer quantity, Size size) {
+        Query query = createQuery("from Stock where item.id = :idItem and size = :size");
+        query.setLong("idItem", item.getId());
+        query.setString("size", size.name());
+        Stock stock = (Stock) query.uniqueResult();
+        return stock != null && stock.getAvailable() - quantity > 0;
+    }
 
-	public StockDao(){
-		super();
-	}
-	
-	@Override
-	public List<Stock> insertStocks(List<Stock> stocks) {
-		List<Stock> result = new ArrayList<>();
-		for (Stock stock: stocks){
-			stock.setId((Long)save(stock));
-			result.add(stock);
-		}
-		return result;
-	}
-	
-	public boolean existStock(Item item, Integer quantity) {
-		Query query = createQuery("from Stock where item.id = :idItem");
-		query.setLong("idItem", item.getId());
-		Stock stock = (Stock) query.uniqueResult();
-		return stock != null && stock.getStock() - quantity > 0;
-	}
+    public List<Stock> allStocks(Item item) {
+        Query query = createQuery("from Stock where item.id = :idItem");
+        query.setLong("idItem", item.getId());
+        return (List<Stock>)query.list();
+    }
 }
