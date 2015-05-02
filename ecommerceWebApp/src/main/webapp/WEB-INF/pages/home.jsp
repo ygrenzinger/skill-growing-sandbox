@@ -6,7 +6,7 @@
 	</head>
 	<body>
 
-		<h3 style="text-align:center"> Bienvenue  ${name} ${firstname} à la boutique des Girondins de Bordeaux !</h3>
+		<h3 style="text-align:center"> Bienvenue  ${name} ${firstname} Ã  la boutique des Girondins de Bordeaux !</h3>
 		
 		<c:if test="${not empty items}">
 		    <c:forEach var="item" items="${items}">

@@ -1,4 +1,4 @@
-package com.carbon.skillsgrowing.front.web.service;
+package com.carbon.ecommerce.back.service;
 
 import com.carbon.ecommerce.dao.TeamDao;
 import com.carbon.ecommerce.domain.Team;

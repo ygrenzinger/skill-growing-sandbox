@@ -12,6 +12,7 @@
 
     <artifactId>backoffice-parent</artifactId>
     <packaging>pom</packaging>
+    <name>Backoffice</name>
 
     <modules>
         <module>web-contracts</module>

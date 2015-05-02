@@ -9,7 +9,7 @@
     </parent>
     <artifactId>ecommerceWebApp</artifactId>
     <packaging>war</packaging>
-    <name>ecommerceWebApp Maven Webapp</name>
+    <name>Front Webapp</name>
     <url>http://maven.apache.org</url>
 
     <properties>

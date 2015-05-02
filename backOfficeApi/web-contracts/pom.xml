@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>back-office-xsd</artifactId>
     <packaging>jar</packaging>
+    <name>Backoffice XSD</name>
 
     <build>
         <plugins>

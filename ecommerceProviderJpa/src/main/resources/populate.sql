@@ -1,5 +1,5 @@
 INSERT INTO TEAM (ID, NAME)
-              VALUES (1, 'Bordeaux');
+          VALUES (1, 'Bordeaux');
 
 INSERT INTO ITEM (ID, COMPOSITION, DESCRIPTION, REFERENCE, PRICE, TEAM_ID)
           VALUES (1, '100% Coton', 'vMaillot Bordeaux', '10001', '80', 1);
@@ -11,8 +11,8 @@ INSERT INTO ITEM (ID, COMPOSITION, DESCRIPTION, REFERENCE, PRICE, TEAM_ID)
           VALUES (3, '100% Coton', 'Chaussettes Bordeaux', '10003', '30', 1);
 
 INSERT INTO STOCK (ID, SIZE, AVAILABLE, ITEM_ID)
-  VALUES (1, 'S', 10, 1);
+           VALUES (1, 'S', 10, 1);
 
 INSERT INTO STOCK (ID, SIZE, AVAILABLE, ITEM_ID)
-  VALUES (2, 'M', 1, 1);
+           VALUES (2, 'M', 1, 1);
 

@@ -10,6 +10,7 @@
     <artifactId>ecommerceProviderJpa</artifactId>
     <packaging>jar</packaging>
     <url>http://maven.apache.org</url>
+    <name>Database Layer</name>
 
     <properties>
         <spring.version>4.1.1.RELEASE</spring.version>

@@ -15,6 +15,7 @@
 
     <artifactId>backoffice-front</artifactId>
     <packaging>war</packaging>
+    <name>Backoffice Webapp</name>
 
     <dependencies>
         <dependency>

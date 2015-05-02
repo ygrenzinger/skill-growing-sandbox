@@ -8,6 +8,7 @@
     </parent>
     <artifactId>ecommerceProviderService</artifactId>
     <url>http://maven.apache.org</url>
+    <name>Service Layer</name>
 
     <properties>
         <jstl.version>1.2</jstl.version>

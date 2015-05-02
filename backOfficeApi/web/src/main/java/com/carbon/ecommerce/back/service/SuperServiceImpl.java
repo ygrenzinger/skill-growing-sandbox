@@ -1,4 +1,4 @@
-package com.carbon.skillsgrowing.front.web.service;
+package com.carbon.ecommerce.back.service;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

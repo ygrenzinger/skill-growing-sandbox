@@ -1,9 +1,9 @@
-package com.carbon.skillsgrowing.front.web.api.category;
+package com.carbon.ecommerce.back.api.category;
 
+import com.carbon.ecommerce.back.service.CategoryService;
+import com.carbon.ecommerce.back.service.ProductService;
 import com.carbon.ecommerce.backoffice.api.*;
 import com.carbon.ecommerce.domain.Team;
-import com.carbon.skillsgrowing.front.web.service.ProductService;
-import com.carbon.skillsgrowing.front.web.service.CategoryService;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.slf4j.Logger;

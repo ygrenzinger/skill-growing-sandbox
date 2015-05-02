@@ -1,4 +1,4 @@
-package com.carbon.skillsgrowing.front.web.api.category;
+package com.carbon.ecommerce.back.api.category;
 
 import com.carbon.ecommerce.backoffice.api.Product;
 import com.carbon.ecommerce.domain.Item;
